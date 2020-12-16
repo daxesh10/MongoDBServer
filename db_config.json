@@ -1,0 +1,8 @@
+{
+    "env": {
+        "MONGO_ATLAS_User": "test",
+        "MONGO_ATLAS_Password": "test",
+        "MONGO_ATLAS_DB_Name": "Users_DB",
+        "Salt":10
+    }
+}
