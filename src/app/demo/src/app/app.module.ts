@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import {NgForm} from '@angular/forms';
+import { Output , EventEmitter } from '@angular/core';
 
 //comp
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +15,8 @@ import { SignupComponent } from './signup/signup.component';
 import { UserinfoComponent } from './userinfo/userinfo.component';
 import { ProductgridComponent } from './productgrid/productgrid.component';
 import { ProductitemComponent } from './productitem/productitem.component';
+import { CartComponent } from './cart/cart.component';
+import { OrderlistComponent } from './orderlist/orderlist.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,9 @@ import { ProductitemComponent } from './productitem/productitem.component';
     SignupComponent,
     UserinfoComponent,
     ProductgridComponent,
-    ProductitemComponent
+    ProductitemComponent,
+    CartComponent,
+    OrderlistComponent
   ],
   imports: [
     BrowserModule,

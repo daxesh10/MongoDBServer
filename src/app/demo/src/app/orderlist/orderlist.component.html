@@ -1,0 +1,35 @@
+<div class="container" style="margin-top: 70px;padding: 50px;">
+
+    <div class="card" style="margin-top: 20px;" *ngFor="let order of userOrders;">
+        
+        <div class="card-body">
+          
+            <table class="table table-striped">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of order.products; let i = index">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td> {{ product.Name }} </td>
+                    <td>{{ product.Quantity }}</td>
+                    <td>$ {{ product.Price }}</td>
+                    <td>$ {{ product.Quantity *  product.Price }}</td>
+                  </tr>
+                </tbody>
+            </table>
+            <span href="javascript:void(0);" style="margin-left:80%;color: cadetblue;"><strong>Subtotal :  $ {{subtotal}}</strong></span>
+          
+        </div>
+        <div class="card-footer text-muted">
+            <a href="javascript:void(0);" class="btn btn-danger">Remove</a>
+        </div>
+    </div>
+
+</div>

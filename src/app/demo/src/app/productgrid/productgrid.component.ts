@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
@@ -21,6 +21,9 @@ export class ProductgridComponent implements OnInit {
           this.userId = id;          
       });
   };
+
+  @Output() 
+  addToCart = new EventEmitter<any>();
 
   getProducts()  
   {           
@@ -51,6 +54,10 @@ export class ProductgridComponent implements OnInit {
           this.errorMsg = ''          
         }
       );  
+  }
+
+  addToShoppingCart(product : any){ 
+    this.addToCart.emit(product);    
   }
 
   ngOnInit(): void {

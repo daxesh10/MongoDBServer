@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , Output , EventEmitter} from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { UserinfoComponent } from '../userinfo/userinfo.component';
 import { ProductgridComponent } from "../productgrid/productgrid.component";
+import { CartComponent } from "../cart/cart.component";
+import { OrderlistComponent } from "../orderlist/orderlist.component";
+import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-profile',
@@ -29,6 +33,7 @@ export class ProfileComponent implements OnInit {
  //products  : Array<any> = [];
  userOrders  : Array<any> = [];
  tabActive : String = 'Profile';
+ shoppingCart : Array<any> = [];
 
   constructor(private http: HttpClient , private activatedRoute: ActivatedRoute, private router: Router) {
     this.activatedRoute.params.subscribe(params => {
@@ -130,6 +135,54 @@ export class ProfileComponent implements OnInit {
 
   navigation(tab : string){
     this.tabActive = tab;
+  }
+
+  addToCartHandeler(product : any){
+    let validToAdd = true;
+    this.shoppingCart.forEach(item => {
+      if(item.drugCode == product.drugCode){
+        validToAdd = false;
+      };      
+    });
+    if(validToAdd){
+      let data = {
+              drugCode: product.drugCode,
+              drugCompany: product.drugCompany,
+              drugName: product.drugName,
+              image: product.image,
+              price: product.price,
+              stocks: product.stocks,
+              _id: product._id,
+              quantity: 1,
+              total: product.price,
+        };
+      this.shoppingCart.push(data);
+    }            
+  };
+
+  proccedToCheckout(data :any)
+  {
+      //console.log('proccedToCheckout', data);
+      this.http.post<any>(this.baseUrl + 'api/order', { 
+        userId: data.userId,
+        products: data.products,
+      })
+      .subscribe(       
+        result  => {
+          console.log('proccedToCheckout data', result);
+          this.shoppingCart = [];
+          this.router.navigate(['/dashboard', result.createdOrder.User_ID ]);
+          
+        },
+        error => {
+          console.log('formData error', error.error.message);
+          this.errorMsg = error.error.message;
+        },
+        ()=>{
+          //redirect to new page
+          this.errorMsg = ''          
+        }
+      );      
   }
 
   ngOnInit(): void 
