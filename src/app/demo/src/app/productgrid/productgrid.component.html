@@ -1,0 +1,25 @@
+
+
+<div style="margin-top: 150px;padding: 50px;">
+  <form class="form-inline active-cyan-4">
+    <input class="form-control form-control-sm" type="text" placeholder="Search" aria-label="Search" style="width: 400px;height: 40px;">
+    <button type="button" class="btn btn-light" style="height: 44px;"> Search </button>
+  </form>
+
+<div class="row text-center" style="margin-top: 50px;">
+
+    <div class="col-lg-3 col-md-6 mb-4" *ngFor="let product of products; let i = index">
+        <div class="card h-100">
+          <img class="card-img-top" src="{{ product.image}}" alt="" height="120" width="80">
+          <div class="card-body">
+            <h4 class="card-title"> {{ product.drugName}} </h4>
+            <p class="card-text"> {{ product.drugCompany}}</p>
+            <p class="card-text"> $ {{product.price}}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-info">Add To Cart</a>
+          </div>
+        </div>
+    </div>
+</div>
+</div>

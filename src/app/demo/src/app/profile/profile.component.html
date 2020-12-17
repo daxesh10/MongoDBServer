@@ -1,0 +1,47 @@
+  <!-- Page Content -->
+  <div style="margin-top: 50px;">
+
+      <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">     
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item" [ngClass]="{'active' : tabActive == 'Profile'}">
+            <a class="nav-link" href="javascript:void(0);" (click)="navigation('Profile')">Profile        
+            </a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : tabActive == 'Products'}">
+            <a class="nav-link" href="javascript:void(0);" (click)="navigation('Products')">Products</a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : tabActive == 'Cart'}">
+            <a class="nav-link" href="javascript:void(0);" (click)="navigation('Cart')">Cart</a>
+          </li>
+          <li class="nav-item" [ngClass]="{'active' : tabActive == 'Orders'}">
+            <a class="nav-link" href="javascript:void(0);" (click)="navigation('Orders')">Orders</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <ng-template [ngIf]="tabActive == 'Profile'">
+    <app-userinfo [data]="user"></app-userinfo>
+  </ng-template>
+
+  <ng-template [ngIf]="tabActive == 'Products'">
+      <app-productgrid></app-productgrid>
+  </ng-template>
+
+  <ng-template [ngIf]="tabActive == 'Cart'">
+      cart list
+  </ng-template>
+
+  <ng-template [ngIf]="tabActive == 'Orders'"> 
+
+    order list
+      
+  </ng-template>
+  </div>
+    
+
+
